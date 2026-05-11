@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover, shrink-to-fit=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Brawl Balls - Летнее обновление</title>
+    <meta name="theme-color" content="#ff9800">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="splash-screen">
+    <h1 id="splash-title">Brawl Balls</h1>
+    <p id="splash-subtitle">Lygoodfr Games</p>
+</div>
+
+<div id="login-screen" class="hidden">
+    <div id="login-container">
+        <h2 id="login-title">Вход в игру</h2>
+        <div class="tab-buttons">
+            <button id="login-tab" class="tab-btn active" data-key="login_tab">Вход</button>
+            <button id="register-tab" class="tab-btn" data-key="register_tab">Регистрация</button>
+        </div>
+        <div id="login-form" class="auth-form">
+            <input type="text" id="login-username" placeholder="Имя пользователя">
+            <input type="password" id="login-password" placeholder="Пароль">
+            <button id="login-btn" data-key="login_btn">Войти</button>
+            <p id="login-error" class="error-message"></p>
+        </div>
+        <div id="register-form" class="auth-form hidden">
+            <input type="text" id="reg-username" placeholder="Имя пользователя">
+            <input type="password" id="reg-password" placeholder="Пароль">
+            <input type="password" id="reg-confirm" placeholder="Подтвердите пароль">
+            <button id="register-btn" data-key="register_btn">Зарегистрироваться</button>
+            <p id="register-error" class="error-message"></p>
+        </div>
+        <button id="guest-btn" class="guest-btn" data-key="guest_btn">Продолжить как гость</button>
+    </div>
+</div>
+
+<div id="main-menu" class="hidden">
+    <div id="main-menu-header">
+        <div id="header-image">
+            <img src="https://i.ibb.co/ccGqDkv4/2026-04-17-231106.png">
+        </div>
+        <h1>Brawl Balls</h1>
+        <p>Lygoodfr Games</p>
+        <div id="user-info">
+            <span id="current-user">Игрок</span>
+            <button id="logout-btn" class="logout-btn" data-key="logout_btn">Выйти</button>
+        </div>
+        <div id="currency-display">
+            <div class="currency-item clickable" id="trophies-clickable">
+                <span class="currency-icon">🏆</span>
+                <span data-key="trophies_label">Трофеи</span>: <span id="trophies-count">0</span>
+                <span id="trophies-notification" class="trophies-notification hidden">!</span>
+            </div>
+            <div class="currency-item">
+                <span class="currency-icon">💎</span>
+                <span data-key="jade_label">Нефриты</span>: <span id="jade-count">0</span>
+            </div>
+            <div class="currency-item">
+                <span class="currency-icon">🎫</span>
+                <span data-key="tokens_label">Жетоны</span>: <span id="tokens-count">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="selected-fighter-area">
+        <div id="selected-fighter-card">
+            <img id="selected-fighter-img" class="selected-fighter-img" src="https://i.ibb.co/0R4r6dBv/2026-04-17-231029.png">
+            <div id="selected-fighter-name">Шегги</div>
+            <div id="selected-fighter-desc">Магический стрелок</div>
+        </div>
+    </div>
+
+    <div id="mode-select">
+        <h3 data-key="mode_title">РЕЖИМЫ ИГРЫ</h3>
+        <div class="mode-buttons">
+            <button id="solo-mode-btn" class="mode-btn solo active" data-key="solo_mode">🏆 Одиночный</button>
+            <button id="capture-mode-btn" class="mode-btn capture" data-key="capture_mode">💎 Захват алмазов</button>
+            <button id="knockout-mode-btn" class="mode-btn knockout" data-key="knockout_mode">👊 Нокаут</button>
+            <button id="starhunt-mode-btn" class="mode-btn starhunt" data-key="starhunt_mode">⭐ Захват звезд</button>
+        </div>
+    </div>
+
+    <div id="menu-buttons">
+        <button id="start-game-btn" data-key="play_btn">Играть</button>
+        <button id="shop-btn" data-key="shop_btn">Магазин</button>
+        <button id="fighters-btn" data-key="fighters_btn">Бойцы</button>
+        <button id="settings-btn" data-key="settings_btn">Настройки</button>
+        <button id="news-btn" data-key="news_btn">Новости</button>
+    </div>
+
+    <div class="controls-info">
+        <h3>🎮 УПРАВЛЕНИЕ</h3>
+        <div class="controls-row">
+            <div class="control-pc">
+                <h4>💻 КОМПЬЮТЕР</h4>
+                <p>⬅️ ➡️ ⬆️ ⬇️ - движение</p>
+                <p>␣ ПРОБЕЛ - атака</p>
+                <p>⇧ SHIFT - суператака</p>
+            </div>
+            <div class="control-mobile">
+                <h4>📱 ТЕЛЕФОН</h4>
+                <p>🔵 Синий джойстик - движение</p>
+                <p>🔴 Красная кнопка - атака</p>
+                <p>🟡 Жёлтая кнопка - суператака</p>
+            </div>
+        </div>
+    </div>
+
+    <h4><a href="https://vk.com/lygoodfr" target="_blank">📱 ВК создателя игры</a></h4>
+
+    <div id="rewards-menu" class="modal hidden">
+        <div class="modal-header">
+            <h2 data-key="rewards_title">Награды за трофеи</h2>
+            <button class="close-modal" id="close-rewards-btn">X</button>
+        </div>
+        <div class="modal-body">
+            <div class="rewards-info">
+                <p>🏆 <span id="current-trophies-display">0</span> / <span id="max-reward-trophies">20000</span> трофеев</p>
+                <div class="rewards-progress">
+                    <div class="progress-bar" id="rewards-progress-bar"></div>
+                </div>
+            </div>
+            <div class="rewards-list" id="rewards-list"></div>
+        </div>
+    </div>
+
+    <div id="shop-menu" class="modal hidden">
+        <div class="modal-header">
+            <h2 data-key="shop_title">Магазин</h2>
+            <button class="close-modal" id="close-shop-btn">X</button>
+        </div>
+        <div class="modal-body">
+            <div class="shop-section chest-section">
+                <h3>🎁 Ящик с нефритами</h3>
+                <div class="shop-item chest-item">
+                    <div class="shop-item-info">
+                        <h4>Таинственный ящик</h4>
+                        <p>Откройте ящик и получите 2500 нефритов!</p>
+                    </div>
+                    <div class="shop-item-price">10 жетонов</div>
+                    <button id="chest-btn-shop" class="buy-btn chest-open-btn" data-key="chest_btn">Открыть ящик</button>
+                </div>
+            </div>
+            <div class="shop-section skins-section">
+                <h3>👕 Костюмы</h3>
+                <div id="hats-list" class="skins-list"></div>
+                <div id="suits-list" class="skins-list"></div>
+            </div>
+            <div class="shop-section boosters-section">
+                <h3>⚡ Бустеры</h3>
+                <div class="shop-item">
+                    <div class="shop-item-info">
+                        <h4 data-key="health_booster">Бустер здоровья</h4>
+                        <p data-key="health_desc">Увеличивает максимальное здоровье на 500 единиц</p>
+                    </div>
+                    <div class="shop-item-price">500 нефритов</div>
+                    <button id="buy-health-btn" class="buy-btn" data-key="buy_btn">Купить</button>
+                </div>
+                <div class="shop-item">
+                    <div class="shop-item-info">
+                        <h4 data-key="damage_booster">Бустер урона</h4>
+                        <p data-key="damage_desc">Увеличивает урон на 200 единиц</p>
+                    </div>
+                    <div class="shop-item-price">800 нефритов</div>
+                    <button id="buy-damage-btn" class="buy-btn" data-key="buy_btn">Купить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="fighters-menu" class="modal hidden">
+        <div class="modal-header">
+            <h2 data-key="fighters_title">Бойцы</h2>
+            <button class="close-modal" id="close-fighters-btn">X</button>
+        </div>
+        <div class="modal-body">
+            <div class="fighters-list" id="fighters-list-modal"></div>
+        </div>
+    </div>
+
+    <div id="settings-menu" class="modal hidden">
+        <div class="modal-header">
+            <h2 data-key="settings_title">Настройки</h2>
+            <button class="close-modal" id="close-settings-btn">X</button>
+        </div>
+        <div class="modal-body">
+            <div class="settings-section">
+                <h3 data-key="language_label">Язык / Language</h3>
+                <select id="language-select">
+                    <option value="ru">Русский</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+            <div class="settings-section">
+                <h3 data-key="music_label">Громкость музыки</h3>
+                <input type="range" id="music-volume" min="0" max="100" value="70">
+                <button id="toggle-music" class="settings-btn" data-key="mute_btn">Выключить</button>
+            </div>
+            <div class="settings-section">
+                <h3 data-key="sfx_label">Громкость эффектов</h3>
+                <input type="range" id="sfx-volume" min="0" max="100" value="80">
+                <button id="toggle-sfx" class="settings-btn" data-key="mute_sfx_btn">Выключить</button>
+            </div>
+            <div class="settings-section">
+                <h3 data-key="controls_label">Управление</h3>
+                <button id="reset-controls" class="settings-btn" data-key="reset_controls_btn">Сбросить</button>
+                <div class="control-size-slider">
+                    <span data-key="joystick_size_label">Размер джойстика:</span>
+                    <input type="range" id="joystick-size" min="60" max="150" value="100">
+                </div>
+                <div class="control-size-slider">
+                    <span data-key="button_size_label">Размер кнопок:</span>
+                    <input type="range" id="button-size" min="40" max="100" value="70">
+                </div>
+            </div>
+            <div class="settings-section">
+                <h3 data-key="save_label">Сохранение данных</h3>
+                <input type="email" id="backup-email" placeholder="Email для бэкапа">
+                <button id="save-to-email" class="settings-btn" data-key="save_btn">Сохранить</button>
+                <button id="load-from-email" class="settings-btn" data-key="load_btn">Загрузить</button>
+                <p id="backup-status" class="backup-status"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="news-menu" class="modal hidden">
+        <div class="modal-header">
+            <h2 data-key="news_title">Новости</h2>
+            <button class="close-modal" id="close-news-btn">X</button>
+        </div>
+        <div class="modal-body">
+            <div class="news-links">
+                <a href="https://vk.com/lygoodfr" target="_blank" class="news-link">📱 ВКонтакте</a>
+                <a href="https://rutube.ru/channel/77568774/" target="_blank" class="news-link">📺 RuTube</a>
+            </div>
+            <div class="news-updates">
+                <h3 data-key="latest_updates">Последние обновления:</h3>
+                <ul>
+                    <li data-key="update1">✨ Новый боец: Шэгост (Призрак)</li>
+                    <li data-key="update2">🦋 Летние бабочки</li>
+                    <li data-key="update3">⭐ Новый режим "Захват Звёзд"</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="chest-notification" class="hidden">
+        <div class="notification-content">
+            <h3 data-key="congrats_title">Поздравляем!</h3>
+            <p><span data-key="received_text">Вы получили</span>: <span id="jade-reward">2500</span> <span data-key="jade_text">нефритов</span>!</p>
+            <button id="close-notification-btn" data-key="ok_btn">OK</button>
+        </div>
+    </div>
+    
+    <div id="drop-animation" class="hidden">
+        <div class="drop-container">
+            <div class="drop-ball" id="drop-ball"></div>
+            <div class="drop-name" id="drop-name"></div>
+        </div>
+    </div>
+</div>
+
+<div id="game-container" class="hidden">
+    <canvas id="game-canvas" width="900" height="600"></canvas>
+    <div id="game-hud">
+        <div id="player-health" data-key="health_label">❤️ Здоровье: 4000</div>
+        <div id="enemies-remaining" data-key="enemies_label">👾 Врагов: 0</div>
+        <div id="trophy-count" data-key="trophies_label">🏆 Трофеи: 0</div>
+        <div id="token-count" data-key="tokens_label">🎫 Жетоны: 0</div>
+        <div id="diamonds-count" class="hidden" data-key="diamonds_label">💎 Алмазы: 0/10</div>
+        <div id="flowers-count" class="hidden" data-key="flowers_label">🌸 Цветочки: 0/10</div>
+        <div id="star-score" class="hidden" data-key="stars_label">⭐ Звезды: 0 - 0</div>
+    </div>
+    <div id="round-display" class="hidden"><span data-key="round_label">🥊 Раунд</span>: <span id="round-number">1</span>/3</div>
+    <div id="capture-timer" class="hidden" data-key="waiting_label">⏱️ Ожидание...</div>
+    <div id="team-scores" class="hidden">
+        <div>⚔️ <span data-key="our_label">Наша</span>: 0</div>
+        <div>👹 <span data-key="enemy_label">Враги</span>: 0</div>
+    </div>
+</div>
+
+<div id="win-screen" class="hidden">
+    <h1>🏆 ПОБЕДА! 🏆</h1>
+    <div class="rewards">
+        <p>🏆 <span data-key="trophies_earned">Трофеев</span>: +<span id="trophies-earned">0</span></p>
+        <p>🎫 <span data-key="tokens_earned">Жетонов</span>: +<span id="tokens-earned">0</span></p>
+    </div>
+    <button id="play-again-btn-win" data-key="play_again_btn">🎮 Играть снова</button>
+    <button id="main-menu-btn-win" data-key="main_menu_btn">🏠 В главное меню</button>
+</div>
+
+<div id="lose-screen" class="hidden">
+    <h1>💀 ПОРАЖЕНИЕ! 💀</h1>
+    <div class="rewards">
+        <p>🏆 <span data-key="trophies_earned">Трофеев</span>: +<span id="trophies-lost">0</span></p>
+        <p>🎫 <span data-key="tokens_earned">Жетонов</span>: +<span id="tokens-lost">0</span></p>
+    </div>
+    <button id="play-again-btn-lose" data-key="play_again_btn">🎮 Играть снова</button>
+    <button id="main-menu-btn-lose" data-key="main_menu_btn">🏠 В главное меню</button>
+</div>
+
+<div id="animation-container"></div>
+
+<audio id="menu-music" loop>
+    <source src="https://zvukipro.com/uploads/files/2020-05/1588412754_laxity-crosswords-by-seraphic-music.mp3" type="audio/mpeg">
+</audio>
+<audio id="shoot-sound">
+    <source src="https://zvukipro.com/uploads/files/2018-12/1545114041_jg-032316-sfx-8-bit-punch.mp3" type="audio/mpeg">
+</audio>
+<audio id="chest-sound">
+    <source src="https://zvukipro.com/uploads/files/2018-12/1545114041_jg-032316-sfx-8-bit-punch.mp3" type="audio/mpeg">
+</audio>
+<audio id="gem-sound">
+    <source src="https://zvukipro.com/uploads/files/2018-12/1545114041_jg-032316-sfx-8-bit-punch.mp3" type="audio/mpeg">
+</audio>
+<audio id="flower-sound">
+    <source src="https://zvukipro.com/uploads/files/2018-12/1545114041_jg-032316-sfx-8-bit-punch.mp3" type="audio/mpeg">
+</audio>
+<audio id="shield-sound">
+    <source src="https://zvukipro.com/uploads/files/2018-12/1545114041_jg-032316-sfx-8-bit-punch.mp3" type="audio/mpeg">
+</audio>
+<audio id="drop-sound">
+    <source src="https://zvukipro.com/uploads/files/2018-12/1545114041_jg-032316-sfx-8-bit-punch.mp3" type="audio/mpeg">
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>
